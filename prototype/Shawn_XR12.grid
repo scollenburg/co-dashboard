@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><abs contexttype="opengear" id="_top" keepalive="false" style="">
+   <simplegrid cols="6" height="471" left="113" rows="1" top="122" width="698">
+      <button buttontype="push" name="1"/>
+      <button buttontype="push" id="s2" name="snippet2">
+         <task tasktype="ogscript">ogscript.sendUDPAsBytes("10.10.10.117", 10023, "2F2D736E61702F6C6F6164002C69000000000002");
+//ogscript.sendUDPAsBytes("10.10.10.117", 10023, '2F, 6C, 6F, 61, 64, 00, 00, 00, 2C, 73, 00, 00, 73, 6E, 69, 70, 70, 65, 74, 00, 2C, 69, 00, 00, 00, 00');
+ogscript.debug ("-snap 2");</task>
+      </button>
+      <button buttontype="push" id="v1" name="Visual1">
+         <task tasktype="ogscript">
+
+
+/*! block id=1020 !*/
+ogscript.sendUDPAsBytes("10.10.10.117", 10023, "2F 2D 73 6E 61 70 2F 6C 6F 61 64 00 2C 69 00 00 00 00 00 01 ");
+/*!!
+ &lt;block id="1020" type="ogscript_sendudpasbytes" x="58" y="164" w="318" HOST="10.10.10.117" PORT="10023" BYTES="2F 2D 73 6E 61 70 2F 6C 6F 61 64 00 2C 69 00 00 00 00 00 01 " /&gt;
+!!*/
+/*!!&lt;checksum&gt;a4b8da663b7e78e770a07addb44abe60&lt;/checksum&gt;!!*/</task>
+      </button>
+      <button buttontype="push" id="s0" name="snippet1">
+         <task tasktype="ogscript">ogscript.sendUDPAsBytes("10.10.10.117", 10023, "2F2D736E61702F6C6F6164002C69000000000001");
+//ogscript.sendUDPAsBytes("10.10.10.117", 10023, '2F, 6C, 6F, 61, 64, 00, 00, 00, 2C, 73, 00, 00, 73, 6E, 69, 70, 70, 65, 74, 00, 2C, 69, 00, 00, 00, 01');
+ogscript.debug ("-snap 1");</task>
+      </button>
+   </simplegrid>
+</abs>
