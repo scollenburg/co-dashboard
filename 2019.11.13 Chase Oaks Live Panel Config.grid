@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?><abs contexttype="opengear" id="_top" name="INTERNAL SOURCE" style="bg#control;" virtualheight="946" virtualwidth="1918">
+   <abs bottom="0" contexttype="opengear" left="0" name="Tally Layer" objectid="tally-service-frame&lt;br&gt;Slot 0&lt;br&gt;DB-Tally-Service" objecttype="DB-Tally-Service" right="0" style="bdr#dark;bdr:thick;bg#control;" top="0" virtualheight="946" virtualwidth="1918">
+      <abs bottom="3" contexttype="opengear" dblinqport="2222" left="1" name="Carbonite Layer" objectid="Carbonite 00:0F:9B:03:83:25&lt;br&gt;Slot 0&lt;br&gt;Carbonite" objecttype="Carbonite" right="-1" style="bdr#dark;bdr:thick;bg#control;" top="-3" virtualheight="946" virtualwidth="1918">
+         <meta id="CAM 8 PTZ META" name="CAM 8 PTZ META">
+            <api>function tellPTZCAM8(preset)​
+        {​
+           var address = ogscript.getPrivateString('hosts', 'PTZCAM8.address');​
+               var CGIUrl = '/cgi-bin/aw_ptz?cmd=';​
+               var CGICommand = '%23R' + preset;​
+               CGICommand = CGICommand + '&amp;res=1';​
+               ​
+               var message = 'GET ' + CGIUrl + CGICommand + ' HTTP/1.1\r\n' + ​
+               'Host: ' + address + ' \r\n' + ​
+               'Connection: close\r\n' +​
+               '\r\n?';​
+                              ​
+               rosstalk.sendMessage(address, 80, message, callback);​
+      }​
+​
+      function callback(success, sentData, resultString, exception)​
+      {​
+         ogscript.debug(resultString);​
+      }​
+​
+      function onCAM8Load()​
+      {​
+         params.setValue('CAM8PTZADDRESS', 0, ogscript.getPrivateString('hosts', 'PTZCAM8.address'));​
+      }</api>​<params>​<param access="1" maxlength="0" name="CAM8PTZADDRESS" oid="CAM8PTZADDRESS" type="STRING" value="10.10.10.8" widget="default"/>​</params>​<lookup id="hosts">​<entry key="PTZCAM8.address">10.10.10.8</entry>​</lookup>​<ogscript handles="onload" id="CAM 8 PTZ CONTROL" name="onload" targetid="topLevel">onCAM8Load();​
+      ogscript.debug('CAM 8 PTZ CONTROL onload complete.');</ogscript>​</meta>​<ogscript handles="onchange,onload" oid="0xE0C">if (params.getValue('0xE0C', 0)  ==  11000)
+{
+   ogscript.setStyle("ME2 CANVAS", "bg#FF0000");
+} else {
+   ogscript.setStyle("ME2 CANVAS", "bg#1FF0FF");
+}</ogscript>
+         <ogscript handles="onchange,onload" oid="0xE05">if (params.getValue('0xE05', 0)  ==  0)
+{
+   ogscript.setStyle("ME1 CANVAS", "bg#FF0000");
+} else {
+   ogscript.setStyle("ME1 CANVAS", "bg#615FFF");
+}</ogscript>
+         <abs bottom="171" id="CC CANVAS" left="239" name="CC CANVAS" right="660" style="bdr#dark;bdr:thick;bg#C94FFF;" top="310" virtualheight="396" virtualwidth="1108">
+            <simplegrid bottom="38" cols="5" left="35" right="37" rows="3" top="41">
+               <button buttontype="push" colspan="1" fill="both" height="25" id="CG" name="CG" pheight="105" pwidth="207" rowspan="1" style="size:Bigger;" weightx="1.0" weighty="1.0" width="187">
+                  <task tasktype="rosstalk">rosstalk.sendMessage('10.10.10.44', 7788, 'CC 101');</task>
+                  <task tasktype="ogscript">/*! block id=1444 !*/
+ogscript.setStyle("CG", "#control");
+/*!!
+ &lt;block id="1444" type="ogscript_setstyle" x="10" y="100" w="243" ID="CG" STYLE="#control" /&gt;
+!!*/
+/*!!&lt;checksum&gt;e817c65a9ffae3a821ddc8713e77595f&lt;/checksum&gt;!!*/</task>
+                  <task tasktype="pause">200</task>
+                  <task tasktype="ogscript">
+
+
+/*! block id=1449 !*/
+ogscript.setStyle("CG", "#panelbg");
+/*!!
+ &lt;block id="1449" type="ogscript_setstyle" x="10" y="100" w="243" ID="CG" STYLE="#panelbg" /&gt;
+!!*/
+/*!!&lt;checksum&gt;5ca99f9e1ca495c52e5849afc3326639&lt;/checksum&gt;!!*/</task>
+               </button>
+               <button buttontype="push" colspan="1" fill="both" height="25" id="ME2" name="ME2" pheight="105" pwidth="207" rowspan="1" style="size:Bigger;" weightx="1.0" weighty="1.0" width="187">
+                  <task tasktype="rosstalk">rosstalk.sendMessage('10.10.10.44', 7788, 'CC 102');</task>
+                  <task tasktype="ogscript">/*! block id=1443 !*/
+ogscript.setStyle("ME2", "#control");
+/*!!
+ &lt;block id="1443" type="ogscript_setstyle" x="10" y="100" w="243" ID="ME2" STYLE="#control" /&gt;
+!!*/
+/*!!&lt;checksum&gt;36187ec2267aba8fbed0650c46e47a66&lt;/checksum&gt;!!*/</task>
+                  <task tasktype="pause">200</task>
+                  <task tasktype="ogscript">
+
+
+/*! block id=1448 !*/
+ogscript.setStyle("ME2", "#panelbg");
+/*!!
+ &lt;block id="1448" type="ogscript_setstyle" x="10" y="100" w="243" ID="ME2" STYLE="#panelbg" /&gt;
+!!*/
+/*!!&lt;checksum&gt;1ecc9551cf5e1ff61bf6276db83b3577&lt;/checksum&gt;!!*/</task>
+               </button>
+               <button buttontype="push" colspan="1" fill="both" height="25" id="CAM 8" name="CAM 8" pheight="105" pwidth="207" rowspan="1" style="size:Bigger;" weightx="1.0" weighty="1.0" width="187">
+                  <task tasktype="rosstalk">rosstalk.sendMessage('10.10.10.44', 7788, 'CC 103');</task>
+                  <task tasktype="ogscript">/*! block id=1442 !*/
+ogscript.setStyle("CAM 8", "#control");
+/*!!
+ &lt;block id="1442" type="ogscript_setstyle" x="10" y="100" w="243" ID="CAM 8" STYLE="#control" /&gt;
+!!*/
+/*!!&lt;checksum&gt;e37aee3640b7c6829c1fae690234a1ee&lt;/checksum&gt;!!*/</task>
+                  <task tasktype="pause">200</task>
+                  <task tasktype="ogscript">/*! block id=1447 !*/
+ogscript.setStyle("CAM 8", "#panelbg");
+/*!!
+ &lt;block id="1447" type="ogscript_setstyle" x="10" y="100" w="243" ID="CAM 8" STYLE="#panelbg" /&gt;
+!!*/
+/*!!&lt;checksum&gt;95ce9ab25a5a85ef67f5b0e37835d975&lt;/checksum&gt;!!*/</task>
+               </button>
+               <button buttontype="push" colspan="1" fill="both" height="25" id="LAO" name="LAO" pheight="105" pwidth="207" rowspan="1" style="size:Bigger;" weightx="1.0" weighty="1.0">
+                  <task tasktype="rosstalk">rosstalk.sendMessage('10.10.10.44', 7788, 'CC 104');</task>
+                  <task tasktype="ogscript">/*! block id=1452 !*/
+ogscript.setStyle("LAO", "#control");
+/*!!
+ &lt;block id="1452" type="ogscript_setstyle" x="28" y="40" w="378" ID="LAO" STYLE="#control" /&gt;
+!!*/
+/*!!&lt;checksum&gt;cc953d0be386407c383f4aeff751704e&lt;/checksum&gt;!!*/</task>
+                  <task tasktype="pause">200</task>
+                  <task tasktype="ogscript">/*! block id=1453 !*/
+ogscript.setStyle("LAO", "#panelbg");
+/*!!
+ &lt;block id="1453" type="ogscript_setstyle" x="35" y="35" w="366" ID="LAO" STYLE="#panelbg" /&gt;
+!!*/
+/*!!&lt;checksum&gt;ba852c47dbfc172b0f2150cb4287c373&lt;/checksum&gt;!!*/</task>
+               </button>
+               <button/>
+               <button buttontype="push" colspan="1" fill="both" height="25" id="WALLPLATE CAM 1" name="&lt;html&gt;&lt;center&gt;WALLPLATE&lt;/center&gt;&lt;center&gt;CAM 1&lt;/center&gt;&lt;/html&gt;" pheight="105" pwidth="207" rowspan="1" style="size:Bigger;" weightx="1.0" weighty="1.0">
+                  <task tasktype="rosstalk">rosstalk.sendMessage('10.10.10.44', 7788, 'CC 105');</task>
+                  <task tasktype="ogscript">/*! block id=1458 !*/
+ogscript.setStyle("WALLPLATE CAM 1", "#control");
+/*!!
+ &lt;block id="1458" type="ogscript_setstyle" x="91" y="104" w="474" ID="WALLPLATE CAM 1" STYLE="#control" /&gt;
+!!*/
+/*!!&lt;checksum&gt;76d014277bf41ee94543016ae51d38b7&lt;/checksum&gt;!!*/</task>
+                  <task tasktype="pause">200</task>
+                  <task tasktype="ogscript">/*! block id=1459 !*/
+ogscript.setStyle("WALLPLATE CAM 1", "#panelbg");
+/*!!
+ &lt;block id="1459" type="ogscript_setstyle" x="167" y="116" w="427" ID="WALLPLATE CAM 1" STYLE="#panelbg" /&gt;
+!!*/
+/*!!&lt;checksum&gt;e2e41ccc789c23bb08fd260f6a0d4b40&lt;/checksum&gt;!!*/</task>
+               </button>
+               <button buttontype="push" colspan="1" fill="both" height="25" id="WALLCAM3" name="&lt;html&gt;&lt;center&gt;WALLPLATE&lt;/center&gt;&lt;center&gt;CAM 3&lt;/center&gt;&lt;/html&gt;" pheight="105" pwidth="207" rowspan="1" style="size:Bigger;" weightx="1.0" weighty="1.0">
+                  <task tasktype="rosstalk">rosstalk.sendMessage('10.10.10.44', 7788, 'CC 106');</task>
+                  <task tasktype="ogscript">/*! block id=1456 !*/
+ogscript.setStyle("WALLCAM3", "#control");
+/*!!
+ &lt;block id="1456" type="ogscript_setstyle" x="176" y="92" w="376" ID="WALLCAM3" STYLE="#control" /&gt;
+!!*/
+/*!!&lt;checksum&gt;f81c3c316af9c835bae91813fb22cc52&lt;/checksum&gt;!!*/</task>
+                  <task tasktype="pause">200</task>
+                  <task tasktype="ogscript">/*! block id=1457 !*/
+ogscript.setStyle("WALLCAM3", "#panelbg");
+/*!!
+ &lt;block id="1457" type="ogscript_setstyle" x="180" y="115" w="355" ID="WALLCAM3" STYLE="#panelbg" /&gt;
+!!*/
+/*!!&lt;checksum&gt;8d813210ff6462fcb03dbdf30ecb9321&lt;/checksum&gt;!!*/</task>
+               </button>
+               <button anchor="center" buttontype="push" colspan="1" fill="both" height="25" id="FTB" name="FTB" pheight="105" pwidth="207" rowspan="1" style="size:Bigger;" weightx="1.0" weighty="1.0" width="200">
+                  <task tasktype="rosstalk">rosstalk.sendMessage('10.10.10.44', 7788, 'CC 107');</task>
+                  <task tasktype="ogscript">/*! block id=1424 !*/
+ogscript.setStyle("FTB", "#control");
+/*!!
+ &lt;block id="1424" type="ogscript_setstyle" x="10" y="100" w="243" ID="FTB" STYLE="#control" /&gt;
+!!*/
+/*!!&lt;checksum&gt;ae1a0c6caa5bc9ce9ac4b2b3813db9bd&lt;/checksum&gt;!!*/</task>
+                  <task tasktype="pause">200</task>
+                  <task tasktype="ogscript">/*! block id=1425 !*/
+ogscript.setStyle("FTB", "#panelbg");
+/*!!
+ &lt;block id="1425" type="ogscript_setstyle" x="10" y="100" w="243" ID="FTB" STYLE="#panelbg" /&gt;
+!!*/
+/*!!&lt;checksum&gt;3fdef5ef62e3e5e2ed79bff50c6dca8d&lt;/checksum&gt;!!*/</task>
+               </button>
+               <button buttontype="push" colspan="1" fill="both" height="25" id="RECORD SWITCH" name="&lt;html&gt;&lt;center&gt;RECORD&lt;/center&gt;&lt;center&gt;SWITCH&lt;/center&gt;&lt;/html&gt;" pheight="105" pwidth="207" rowspan="1" style="size:Bigger;txt-align:center;" weightx="1.0" weighty="1.0">
+                  <task tasktype="rosstalk">rosstalk.sendMessage('10.10.10.44', 7788, 'CC 108');</task>
+                  <task tasktype="ogscript">/*! block id=1461,1462,1460,1463 !*/
+if (params.getValue('0xDFE', 0)  ==  1004)
+{
+	ogscript.rename("RECORD SWITCH", "&lt;html&gt;&lt;center&gt;RECORD&lt;/center&gt;&lt;center&gt;WALLPLATE CAM 3&lt;/center&gt;&lt;/html&gt;");
+} else {
+	ogscript.rename("RECORD SWITCH", "&lt;html&gt;&lt;center&gt;RECORD&lt;/center&gt;&lt;center&gt;WALLPLATE CAM 1&lt;/center&gt;&lt;/html&gt;");
+}
+/*!!
+ &lt;block id="1461" type="if" x="347" y="21" w="268" INPUT1="ID:1462" OPERATION="equals" INPUT2="1004" TRUE="ID:1460" FALSE="ID:1463" IGNORE="" /&gt;
+&lt;block id="1462" type="param_Carbonite 00:0F:9B:03:83:25&amp;lt;br&amp;gt;Slot 0&amp;lt;br&amp;gt;Carbonite&amp;amp;Aux Source (0xDFE)[0]" x="73" y="53" w="243" SET="" /&gt;
+&lt;block id="1460" type="ogscript_rename" x="663" y="50" w="243" ID="RECORD SWITCH" NAME="&amp;lt;html&amp;gt;&amp;lt;center&amp;gt;RECORD&amp;lt;/center&amp;gt;&amp;lt;center&amp;gt;WALLPLATE CAM 3&amp;lt;/center&amp;gt;&amp;lt;/html&amp;gt;" /&gt;
+&lt;block id="1463" type="ogscript_rename" x="604" y="325" w="243" ID="RECORD SWITCH" NAME="&amp;lt;html&amp;gt;&amp;lt;center&amp;gt;RECORD&amp;lt;/center&amp;gt;&amp;lt;center&amp;gt;WALLPLATE CAM 1&amp;lt;/center&amp;gt;&amp;lt;/html&amp;gt;" /&gt;
+!!*/
+/*!!&lt;checksum&gt;0a56f01912d2c4d6ee33d24780802dc2&lt;/checksum&gt;!!*/</task>
+                  <task tasktype="ogscript">/*! block id=1465 !*/
+ogscript.setStyle("RECORD SWITCH", "#control");
+/*!!
+ &lt;block id="1465" type="ogscript_setstyle" x="10" y="100" w="243" ID="RECORD SWITCH" STYLE="#control" /&gt;
+!!*/
+/*!!&lt;checksum&gt;87eeb8f4668e104de9b45737144bb483&lt;/checksum&gt;!!*/</task>
+                  <task tasktype="pause">200</task>
+                  <task tasktype="ogscript">/*! block id=1466 !*/
+ogscript.setStyle("RECORD SWITCH", "#panelbg");
+/*!!
+ &lt;block id="1466" type="ogscript_setstyle" x="10" y="100" w="243" ID="RECORD SWITCH" STYLE="#panelbg" /&gt;
+!!*/
+/*!!&lt;checksum&gt;ccd9ef04c33aa30b4194d114f2f504cd&lt;/checksum&gt;!!*/</task>
+               </button>
+               <button/>
+               <button/>
+               <button/>
+               <button buttontype="push" id="CG KEY" name="CG KEY" style="size:Bigger;">
+                  <task tasktype="rosstalk">rosstalk.sendMessage('10.10.10.44', 7788, 'CC 110');</task>
+               </button>
+               <button/>
+               <button buttontype="push" colspan="1" fill="both" height="25" id="KEY RESET" name="KEY RESET" pheight="105" pwidth="207" rowspan="1" style="size:Bigger;" weightx="1.0" weighty="1.0">
+                  <task tasktype="rosstalk">rosstalk.sendMessage('10.10.10.44', 7788, 'CC 109');</task>
+                  <task tasktype="ogscript">/*! block id=1467 !*/
+ogscript.setStyle("KEY RESET", "#control");
+/*!!
+ &lt;block id="1467" type="ogscript_setstyle" x="10" y="100" w="243" ID="KEY RESET" STYLE="#control" /&gt;
+!!*/
+/*!!&lt;checksum&gt;a2d7cc6f920ad2217adb8d3e508900ea&lt;/checksum&gt;!!*/</task>
+                  <task tasktype="pause">200</task>
+                  <task tasktype="ogscript">/*! block id=1469 !*/
+ogscript.setStyle("KEY RESET", "#panelbg");
+/*!!
+ &lt;block id="1469" type="ogscript_setstyle" x="10" y="100" w="243" ID="KEY RESET" STYLE="#panelbg" /&gt;
+!!*/
+/*!!&lt;checksum&gt;5ca386abe903b26de5b1db175b8a9dc4&lt;/checksum&gt;!!*/</task>
+               </button>
+            </simplegrid>
+         </abs>
+         <abs bottom="705" id="LOGO" left="321" name="LOGO" right="360" style="bg#control;bg-u:file:/C:/Users/Arts-Volunteer/Pictures/ALGO%20CO%20B%20blk.png;bg-fill:fit;bg-align:center;" top="123" virtualheight="97" virtualwidth="625"/>​<abs bottom="280" id="CAM 8 PTZ CONTROL" left="1337" name="CAM 8" right="259" style="bg#C94FFF;bdr#dark;bdr:thick;" top="363" virtualheight="276" virtualwidth="283">​<simplegrid bottom="20" cols="3" left="19" right="21" rows="3" top="49">​<button buttontype="push" gpi="1" height="80" id="CAM8PTZ1" left="70" name="WIDE" style="size:Normal;" top="30" width="100">​<task tasktype="ogscript">tellPTZCAM8('00');</task>​</button>​<button buttontype="push" gpi="2" height="80" id="CAM8PTZ2" left="170" name="CROWD" style="size:Normal;" top="30" width="100">​<task tasktype="ogscript">tellPTZCAM8('01');</task>​</button>​<button buttontype="push" gpi="3" height="80" id="CAM8PTZ3" left="270" name="TIGHT" style="size:Normal;txt-align:center;" top="30" width="100">​<task tasktype="ogscript">tellPTZCAM8('02');</task>​</button>​<button buttontype="push" gpi="4" height="80" id="CAM8PTZ4" left="370" name="SCREENS" style="size:Normal;" top="30" width="100">​<task tasktype="ogscript">tellPTZCAM8('03');</task>​</button>​<button buttontype="push" gpi="5" height="80" id="CAM8PTZ5" left="470" name="FOH" style="size:Normal;" top="30" width="100">​<task tasktype="ogscript">tellPTZCAM8('04');</task>​</button>​<button buttontype="push" gpi="6" height="80" id="CAM8PTZ6" left="70" name="CM" style="size:Normal;" top="110" width="100">​<task tasktype="ogscript">tellPTZCAM8('05');</task>​</button>​<button buttontype="push" gpi="7" height="80" id="CAM8PTZ7" left="170" name="CROSS" style="size:Normal;" top="110" width="100">​​<task tasktype="ogscript">tellPTZCAM8('06');</task>
+               </button>​<button buttontype="push" gpi="8" height="80" id="CAM8PTZ8" left="270" name="8" style="size:Normal;" top="110" width="100">​<task tasktype="ogscript">tellPTZCAM8('07');</task>​</button>​<button buttontype="push" gpi="9" height="80" id="CAM8PTZ9" left="370" name="9" style="size:Normal;" top="110" width="100">​<task tasktype="ogscript">tellPTZCAM8('08');</task>​</button>​</simplegrid>​<label bottom="237" id="CAM 8" left="63" name="CAM 8" right="63" style="txt-align:center;bg#selectfg;fg#foreground;size:Big;bdr:round;bdr#listfg;" top="14"/>
+         </abs>​</abs>
+   </abs>
+</abs>
